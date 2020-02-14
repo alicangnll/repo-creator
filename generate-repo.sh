@@ -1,11 +1,15 @@
 #!/bin/sh
 clear
-echo Durum: 200 Okay
+echo Status: 200 Okay
 echo Content-Type: text/plain
 echo ---------------------------------
 echo Gerekli Dosyalar Kuruluyor
 echo ---------------------------------
 
+echo -n "Kurulum Başlasın Mı (y/n)? "
+read answer
+
+if [ "$answer" != "${answer#[Yy]}" ] ;then
 sudo apt update
 sudo apt-get install dpkg-dev apache2 dpkg-sig
 /etc/init.d/apache2 start
@@ -64,3 +68,15 @@ cat /etc/apt/sources.list
 echo ---------------------------------
 echo Kontrol Ediniz !!
 echo ---------------------------------
+gpg --list-keys
+echo ---------------------------------
+
+else
+
+rm -r InRelease FileName.gpg Packages Packages.gz Release Release.gpg
+clear
+echo ---------------------------------
+echo Stopped Durdu !!
+echo --------------------------------- 
+
+fi
