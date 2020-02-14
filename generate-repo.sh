@@ -20,8 +20,8 @@ find ~/.gnupg -type d -exec chmod 700 {} \;
 echo "cert-digest-algo SHA256" >> ~/.gnupg/gpg.conf
 echo "digest-algo SHA256" >> ~/.gnupg/gpg.conf
 
-gpg --gen-key
 gpg --list-keys
+gpg --gen-key
 gpg --output FileName.gpg --armor --export $KEYID
 dpkg-sig --sign *.deb
 
