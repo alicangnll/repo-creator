@@ -19,7 +19,7 @@ gpg --list-keys
 gpg --output ${KEYNAME}.gpg --armor --export $KEYID
 
 apt-ftparchive packages debs > Packages
-dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+dpkg-scanpackages debs /dev/null | gzip -9c > Packages.gz
 apt-ftparchive release debs > Release
 export GPG_TTY=$(tty)
 rm -fr Release.gpg; gpg -abs -o Release.gpg Release
