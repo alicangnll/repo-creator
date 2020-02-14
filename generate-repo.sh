@@ -1,5 +1,5 @@
 sudo apt update
-apt install apache2 dpkg-dev gzip dpkg-sig gnupg
+sudo apt-get install dpkg-dev apache2 dpkg-sig
 /etc/init.d/apache2 start
 
 cd /var/www/html
@@ -17,15 +17,15 @@ echo "digest-algo SHA256" >> ~/.gnupg/gpg.conf
 gpg --gen-key
 gpg --list-keys
 gpg --output ${KEYNAME}.gpg --armor --export $KEYID
+dpkg-sig --sign debs/*.deb
 
 apt-ftparchive packages debs > Packages
 dpkg-scanpackages debs /dev/null | gzip -9c > Packages.gz
 apt-ftparchive release debs > Release
-export GPG_TTY=$(tty)
-rm -fr Release.gpg; gpg -abs -o Release.gpg Release
-rm -fr InRelease; gpg --clearsign -o InRelease Release
-dpkg-sig -k ${KEYNAME} --sign debs/*.deb
-dpkg-sig -c debs/*.deb
+
+gpg --clearsign -o InRelease Release
+gpg -abs -o Release.gpg Release
+
 echo "deb http://127.0.0.1 /" | sudo tee -a /etc/apt/sources.list
 wget -q -O - http://127.0.0.1/${KEYNAME}.gpg | sudo apt-key add -
 apt update
