@@ -1,3 +1,9 @@
+#!/bin/sh
+echo Status: 200 Okay
+echo Content-Type: text/plain
+echo
+echo Rebuilding APT repository:
+
 sudo apt update
 sudo apt-get install dpkg-dev apache2 dpkg-sig
 /etc/init.d/apache2 start
