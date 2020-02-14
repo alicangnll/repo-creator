@@ -15,8 +15,6 @@ echo "cert-digest-algo SHA256" >> ~/.gnupg/gpg.conf
 echo "digest-algo SHA256" >> ~/.gnupg/gpg.conf
 
 gpg --gen-key
-TurkeyTR
-O
 gpg --list-keys
 gpg --output ${KEYNAME}.gpg --armor --export $KEYID
 
