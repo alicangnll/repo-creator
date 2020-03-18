@@ -9,7 +9,7 @@ echo ---------------------------------
 echo -n "Yedek Alınacak..."
 sudo rm -r /etc/hosts.bak
 sudo cp /etc/hosts /etc/hosts.bak
-sudo sh -c 'echo "0 www.google-analytics.com
+sudo echo >> "0 www.google-analytics.com
 0 metrics.apple.com
 0 app.plusplus.com
 0 ads.mobclix.com
@@ -6685,5 +6685,5 @@ sudo sh -c 'echo "0 www.google-analytics.com
 0 iadsdk.apple.com	# Jason - Really interfere with iTunes radio
 0 www.googleapis.com # GB - Blocks Youtube
 0 s.youtube.com # ??? - Blocks Youtube History
-0 ocsp.apple.com # Thireus/idrinkyourfrosty - Let the JB handle this part" >> /etc/hosts'
+0 ocsp.apple.com # Thireus/idrinkyourfrosty - Let the JB handle this part" >> /etc/hosts
 fi
